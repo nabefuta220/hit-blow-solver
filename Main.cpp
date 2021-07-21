@@ -7,6 +7,7 @@
 #define CLOAR 10
 #define SIZE 4
 #include "HBsolver.hpp"
+// http://beechan.com/hit2.cgi
 // https://www.gamesforthebrain.com/japanese/guesscolors/
 using namespace std;
 int main() {
