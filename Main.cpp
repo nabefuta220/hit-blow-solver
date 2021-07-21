@@ -29,7 +29,7 @@ int main() {
 		cout << "hit , blow: ";
 		cin >> result.first >> result.second;
 		res = tri.scan(attempt, result);
-		cout << res << endl;
+		cout <<"possible pattern : "<< res << endl;
 	} while (res != 1);
 	attempt = tri.suggest();
 	cout << "next shoud: ";

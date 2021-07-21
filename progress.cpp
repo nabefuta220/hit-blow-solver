@@ -10,7 +10,7 @@ progressBar::progressBar(int target, int segment) {
 
 void progressBar::increase(int num) {
 	this->cnt += num;
-	if (this->cnt / (this->target / this->segment) !=
+	if (this->target >= this->segment && this->cnt / (this->target / this->segment) !=
 	    this->lastShow / (this->target / this->segment)) {
 		this->show();
 		this->lastShow = this->cnt;

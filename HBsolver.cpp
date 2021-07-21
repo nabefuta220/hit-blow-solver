@@ -1,6 +1,6 @@
 
 #include "HBsolver.hpp"
-#include "progress.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -8,6 +8,8 @@
 #include <set>
 #include <utility>
 #include <vector>
+
+#include "progress.hpp"
 
 void HBsolver::init(std::vector<int> &list, int at, bool same_guard) {
 	if (at == this->size) {
@@ -39,7 +41,6 @@ HBsolver::HBsolver(int size, int colar, bool same_guard) {
 }
 
 int HBsolver::scan(std::vector<int> attempt, std::pair<int, int> result) {
-
 	progressBar bar(this->candidate.size(), 30);
 
 	if (attempt.size() != this->size) {
@@ -48,7 +49,6 @@ int HBsolver::scan(std::vector<int> attempt, std::pair<int, int> result) {
 	std::pair<int, int> cheak;
 
 	for (auto itr = this->candidate.begin(); itr != this->candidate.end();) {
-		
 		cheak = cheak_diff(*itr, attempt);
 		if (cheak != result) {
 			itr = this->candidate.erase(itr);
@@ -96,15 +96,15 @@ std::vector<int> HBsolver::suggest() {
 		     itr++) {
 			cnt = this->cheak_diff(this->pattern[i], *itr);
 			results[cnt]++;
+			maxResult = std::max(maxResult, results[cnt]);
+			if (maxResult > res.first) {
+				break;
+			}
 		}
-		for (auto itr = results.begin(); itr != results.end(); itr++) {
-			maxResult = std::max(maxResult, itr->second);
-		}
+
 		res = std::min(res, std::make_pair(maxResult, i));
 		bar.increase();
 	}
-	std::clog << "cnt suggest : " << res.first << " " << res.second
-	          << std::endl;
 
 	return this->pattern[res.second];
 }
