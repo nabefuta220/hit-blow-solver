@@ -1,12 +1,19 @@
 TARGET=Main
 INDIR = HBsolver
-exe : Main.out
-	./Main.out
+CXXFLAGS = - Wall
+SRCS = Main.cpp HBsolver.cpp progress.cpp
+OBJS := $(SRCS:.cpp=.o)
+exe :$(TARGET).out
+	./$<
+$(TARGET): $(OBJS)
+	$(CXX) -o $@ $(OBJS)
 Main.out : Main.o HBsolver.o progress.o
-	g++  Main.o HBsolver.o progress.o -o Main.out
+	$(CXX)  Main.o HBsolver.o progress.o -o Main.out
 Main.o :Main.cpp
-	g++ -c  Main.cpp -I . -o Main.o
+	$(CXX) -c  Main.cpp -I . -o Main.o
 HBsolver.o : HBsolver.hpp HBsolver.cpp
-	g++ -c HBsolver.cpp -I . -o HBsolver.o
+	$(CXX) -c HBsolver.cpp -I . -o HBsolver.o
 progress.o : progress.hpp progress.cpp
-	g++ -c progress.cpp -I . -o progress.o
+	$(CXX) -c progress.cpp -I . -o progress.o
+clean:
+	$(RM) *.o
