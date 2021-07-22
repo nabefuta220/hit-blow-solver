@@ -4,7 +4,7 @@
 #include <map>
 #include <set>
 #include <vector>
-#define CLOAR 6
+#define CLOAR 10
 #define SIZE 4
 #include "HBsolver.hpp"
 // http://beechan.com/hit2.cgi
