@@ -32,11 +32,15 @@ public:
 	 * colar色のsize個の全組み合わせを列挙する
 	 */
 	HBsolver(int size, int colar, bool same_guard);
+
 	/**
 	 * 予想とその解答からあり得る候補を絞り込む
 	 */
-
 	int scan(std::vector<int> attempt, std::pair<int, int> result);
+	/**
+	 * 複数の予想とその解答からあり得る候補を絞り込む
+	 */
+	int scan(std::vector<std::pair<std::vector<int> , std::pair<int, int>>> results);
 	/**
 	 * 2つの候補間の位置が同じ色の個数と、色が同じ個数を返す
 	 */

@@ -39,7 +39,26 @@ HBsolver::HBsolver(int size, int colar, bool same_guard) {
 	this->colar      = colar;
 	this->init(single_list, 0, same_guard);
 }
+int HBsolver::scan(
+    std::vector<std::pair<std::vector<int>, std::pair<int, int>>> results) {
+	progressBar bar(this->candidate.size(), 30);
 
+
+	std::pair<int, int> cheak;
+
+	for (auto itr = this->candidate.begin(); itr != this->candidate.end();) {
+		for (int i = 0; i < results.size(); i++) {
+			cheak = cheak_diff(*itr, results[i].first);
+			if (cheak != results[i].second) {
+				itr = this->candidate.erase(itr);
+			} else {
+				itr++;
+			}
+		}
+		bar.increase();
+	}
+	return this->candidate.size();
+}
 int HBsolver::scan(std::vector<int> attempt, std::pair<int, int> result) {
 	progressBar bar(this->candidate.size(), 30);
 
