@@ -2,9 +2,11 @@
 
 #include <utility>
 #include <vector>
+#include <map>
 #define __HBSOLVER_HPP
 
-class HBsolver {
+class HBsolver
+{
 private:
 	int size;
 	int colar;
@@ -28,6 +30,10 @@ private:
 
 public:
 	/**
+	 * listを予想した時の解答の分布を出力する
+	 */
+	std::map<std::pair<int, int>, int> find_distrubution(std::vector<int> list);
+	/**
 	 * コンストラクタ
 	 * colar色のsize個の全組み合わせを列挙する
 	 */
@@ -40,12 +46,12 @@ public:
 	/**
 	 * 複数の予想とその解答からあり得る候補を絞り込む
 	 */
-	int scan(std::vector<std::pair<std::vector<int> , std::pair<int, int>>> results);
+	int scan(std::vector<std::pair<std::vector<int>, std::pair<int, int>>> results);
 	/**
 	 * 2つの候補間の位置が同じ色の個数と、色が同じ個数を返す
 	 */
 	std::pair<int, int> cheak_diff(std::vector<int> predict,
-	                               std::vector<int> ans);
+								   std::vector<int> ans);
 	/**
 	 *min-max法を用いて、次に出すべき候補を出力する
 	 */

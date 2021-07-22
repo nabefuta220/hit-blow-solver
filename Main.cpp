@@ -15,14 +15,22 @@ int main() {
 	int res      = 99;
 	vector<int> attempt;
 	vector<pair<vector<int>, pair<int, int>>> list;
-	do {
+	map<pair<int, int>, int> distri;
+	do
+	{
 		attempt = tri.suggest();
 		cout << "next shoud: ";
 		for (int i = 0; i < SIZE; i++) {
 			cout << attempt[i] << " ";
 		}
-		cout << endl;
-		cout << "input: ";
+
+		cout << "\n districution:" << endl;
+		;
+		distri = tri.find_distrubution(attempt);
+		for (auto itr = distri.begin(); itr != distri.end();itr++){
+			cout << "(" << itr->first.first << " " << itr->first.second << ") :" << itr->second << endl;
+		}
+			cout << "input: ";
 		for (int i = 0; i < SIZE; i++) {
 			cin >> attempt[i];
 		}
