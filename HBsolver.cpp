@@ -120,7 +120,7 @@ std::pair<int, int> HBsolver::cheak_diff(std::vector<int> predict,
 
 std::vector<int> HBsolver::suggest()
 {
-	std::pair<int, int> res = std::make_pair(1 << 20, 0);
+	std::pair<std::pair<int,int>, int> res = std::make_pair(std::make_pair(1 << 20,1), 0);//[worse patt , !can same ], num
 	std::pair<int, int> cnt;
 	int maxResult = this->pattern.size();
 	if (maxResult == this->candidate.size())
@@ -154,7 +154,7 @@ std::vector<int> HBsolver::suggest()
 			}
 		}*/
 
-		res = std::min(res, std::make_pair(maxResult, i));
+		res = std::min(res, std::make_pair(std::make_pair(maxResult,(int)!(results[std::make_pair(this->size,0)])), i));
 		bar.increase();
 	}
 
